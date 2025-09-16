@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primera aplicaion web - python</title>
+    <title>Primera aplicacion web - python</title>
 </head>
 <body>
-    Hola Mundo desde Python
+    Hola mundo desde python 
+
     <input type="text" name="txtNombre" id="txtNombre">
     <script>
-        document.addEventListener('DOMContentLoaded', (e)=>{
-            console.log("Documento cargado")
-        })
+        document.addEventListener('DOMContentLoaded',(e)=>{
+            txtNombre.addEventListener('keyup', (e)=>{
+                fetch('http://localhost:3000', {
+                    'method': 'POST',
+                    body: txtNombre.value
+                }).then(resp=>resp.text())
+                .then(data=>console.log(data));            
+            });
+        });
     </script>
 </body>
 </html>
